@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1423204653}
+  timer: 0
   speed: 10
 --- !u!114 &1423204653
 MonoBehaviour:
@@ -2362,8 +2363,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdown: {fileID: 1435239019}
   sr: {fileID: 2060999952}
-  start: {r: 1, g: 0, b: 0, a: 1}
-  end: {r: 0.0055942535, g: 1, b: 0, a: 1}
+  start:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  end:
+    r: 0.0055942535
+    g: 1
+    b: 0
+    a: 1
+  interpolation: 0
 --- !u!212 &2060999952
 SpriteRenderer:
   m_ObjectHideFlags: 0
