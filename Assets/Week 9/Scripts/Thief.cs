@@ -9,9 +9,7 @@ public class Thief : Villager
     public Transform spawnPoint;
     public Transform spawnPoint2;
     public float dashSpeed = 7;
-   // float timer;
-   // public float dashTime = 2;
-   // bool isDashing;
+    Coroutine dashing;
     public override ChestType CanOpen()
     {
         return ChestType.Thief;
@@ -19,7 +17,11 @@ public class Thief : Villager
 
     protected override void Attack()
     {
-        StartCoroutine(Dash());
+        if (dashing != null)
+        {
+         StopCoroutine(dashing);
+        }
+       dashing = StartCoroutine(Dash());
     }
 
     IEnumerator Dash()
