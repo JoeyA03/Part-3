@@ -8,41 +8,23 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
-    public TMP_Text text;
+    public TMPro.TextMeshProUGUI currentSelection;
+    public static CharacterControl Instance;
 
-    public void Update()
-    {
-        text.text = GetVillagerType();
-    }
     public static Villager SelectedVillager { get; private set; }
+
     public static void SetSelectedVillager(Villager villager)
     {
-        if(SelectedVillager != null)
+        if (SelectedVillager != null)
         {
             SelectedVillager.Selected(false);
         }
         SelectedVillager = villager;
         SelectedVillager.Selected(true);
+        Instance.currentSelection.text = villager.ToString();
     }
-
-    public static string GetVillagerType()
+    private void Start()
     {
-        if (SelectedVillager is Archer)
-        {
-            return "Archer";
-        }
-
-        if (SelectedVillager is Merchant)
-        {
-            return "Merchant";
-        }
-
-        if (SelectedVillager is Thief)
-        {
-            return "Thief";
-        }
-        return "";
+        Instance = this;
     }
-
-    
 }
