@@ -12,6 +12,9 @@ public class CharacterControl : MonoBehaviour
     public TMPro.TextMeshProUGUI currentSelection;
     public static CharacterControl Instance;
     public Villager[] villagers;
+    public float Min = 0.5f;
+    public float Max = 2f;
+    float interpolation;
 
     public static Villager SelectedVillager { get; private set; }
 
@@ -38,6 +41,13 @@ public class CharacterControl : MonoBehaviour
     public void DropdownSelectionHasChanged(Int32 value)
     {
         
+    }
+
+    public void OnSliderValueChanged(float value)
+    {
+        float newScale = Mathf.Clamp(0.5f, 2f, value);
+        SelectedVillager.transform.localScale = Vector3.one * newScale;
+        interpolation = value;
     }
 
 }
