@@ -23,17 +23,18 @@ public class Villager : MonoBehaviour
         destination = transform.position;
         Selected(false);
     }
+     
     public void Selected(bool value)
     {
         isSelected = value;
         highlight.SetActive(isSelected);
     }
 
-    private void OnMouseDown()
-    {
-        CharacterControl.SetSelectedVillager(this);
-        clickingOnSelf = true;
-    }
+    //private void OnMouseDown()
+    //{
+    //    CharacterControl.SetSelectedVillager(this);
+    //    clickingOnSelf = true;
+    //}
 
     private void OnMouseUp()
     {
@@ -79,6 +80,7 @@ public class Villager : MonoBehaviour
         {
             Attack();
         }
+
     }
 
    protected virtual void Attack()
