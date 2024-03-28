@@ -8,7 +8,16 @@ public class RedPlayer1 : MonoBehaviour
     protected float runForce = 6f;
     protected float jumpForce = 300f;
 
+    protected bool canJump = true;
+    protected bool canMove = true;
+    public bool Success;
+
+    public GameObject GameOverText;
+    public GameObject SuccessText;
+
+    [SerializeField] protected GameObject Other;
     [SerializeField] protected Rigidbody2D rb;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -20,10 +29,14 @@ public class RedPlayer1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Goal.Win) canMove = false;
+        if (!canMove) return; 
         horizontal = GetAxis();
+        if (!canJump) return;
         if (Input.GetKeyDown(KeyCode.W))
         {
             rb.AddForce(Vector2.up * jumpForce);
+            canJump = false;
         }
     }
 
@@ -51,13 +64,24 @@ public class RedPlayer1 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hazard")
         {
+            GameOverText.SetActive(true);
             Destroy(gameObject);
+            Destroy(Other);
+        }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            canJump = true;
         }
 
         if (collision.gameObject.tag == "Finish")
         {
-           
-          
+            Success = true;
+            if (Other.GetComponent<RedPlayer1>().Success)
+            {
+                SuccessText.SetActive(true);
+                Goal.Win = true;
+            }
         }
     }
 }

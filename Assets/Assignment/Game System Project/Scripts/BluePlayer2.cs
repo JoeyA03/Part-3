@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class BluePlayer2 : RedPlayer1
 {
+   
+
     void Update()
     {
+        if (Goal.Win) canMove = false;
+        if (!canMove) return;
         horizontal = GetAxis();
+        if (!canJump) return;
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             rb.AddForce(Vector2.up * jumpForce);
+            canJump = false;
         }
     }
 
