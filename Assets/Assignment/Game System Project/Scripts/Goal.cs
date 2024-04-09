@@ -2,5 +2,6 @@
 
 public static class Goal 
 {
-    public static bool Win;
+    // This bool is activated as true when both players make it to the green cliff, (a.k.a, the goal).
+    public static bool Win; 
 }

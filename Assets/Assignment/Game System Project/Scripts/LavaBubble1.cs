@@ -12,6 +12,7 @@ public class LavaBubble1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Lava Bubble 1 waits 2 seconds before jumping out of the lava when the game starts.
         StartCoroutine(LavaJump(2));
     }
 
@@ -19,6 +20,7 @@ public class LavaBubble1 : MonoBehaviour
     {
         while (true)
         {
+            // Here, Lava Bubble 1 is also instructed to wait the delay time before jumping out of the lava again. They can only jump in a straight upward direction and with an exact jump force.
             yield return new WaitForSeconds(delay);
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce);
         }
